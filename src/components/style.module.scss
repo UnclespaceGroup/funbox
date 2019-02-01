@@ -1,0 +1,252 @@
+$background-color: #f2f2f2;
+$color-default: #1698d9;
+$color-default__hover: #2ea8e6;
+$color-selected: #d91667;
+$color-selected__hover: #e62e7a;
+$color-disabled: #b3b3b3;
+$color-disabled-description: #ffff66;
+
+
+.background {
+
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 120%;
+  height: 48rem;
+  border-radius: 1rem;
+  fill: white;
+  stroke: $color-default;
+}
+
+.enable {
+  position: relative;
+  display: flex;
+  width: 32rem;
+  height: 48rem;
+  cursor: pointer;
+  z-index: 1;
+}
+.teaser {
+  padding-top: 2rem;
+  padding-left: 5rem;
+  font-size: 1.6rem;
+  font-family: "Trebuchet MS", serif;
+  color: rgb(102, 102, 102);
+  text-align: left;
+  margin: 0;
+}
+
+.teaser_second {
+  display: none;
+  @extend .teaser;
+  color: $color-selected__hover;
+}
+
+.title {
+  font-family: "Trebuchet MS", sans-serif;
+  margin: 2px 0 0 46px;
+  padding: 0 0 0 0;
+  text-align: left;
+  font-size: 48px;
+  font-weight: bold;
+  color: #000;
+}
+
+.taste {
+  margin: 0 0 0 5rem;
+  font-size: 2.4rem;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #000;
+  font-weight: bold;
+  text-align: left;
+}
+
+.specifications {
+  display: flex;
+  flex-direction: column;
+  min-height: 5rem;
+  margin: 0 0 0 5rem;
+  padding: 1rem 0 0;
+  list-style-type: none;
+  .specification {
+    line-height: 1.6rem;
+    font-size: 1.4rem;
+    font-family: "Trebuchet MS", sans-serif;
+    color: #666666;
+  }
+}
+
+.cover {
+  position: absolute;
+  display: block;
+  bottom: .4rem;
+  left: .4rem;;
+  border-bottom-left-radius: .8rem;;
+}
+.circle {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: $color-default;
+  text-align: center;
+  .first_line {
+    font-size: 4.2rem;
+    line-height: 4.2rem;
+    font-family: "Trebuchet MS", serif;
+    color: white;
+  }
+  .second_line {
+    @extend .first_line;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+  }
+}
+//bottom text
+@mixin item_description {
+  display: block;
+  position: relative;
+  padding-top: 13px;
+  font-size: 13px;
+  font-family: "Trebuchet MS", sans-serif;
+  color: rgb(255, 255, 255);
+  line-height: 1.231;
+  text-align: center;
+  text-shadow: 0.5px 0.866px 1px black;
+  margin: 0 0 30px 0;
+  .description_default {
+    display: none;
+    a {
+      color: $color-default;
+      text-decoration: none;
+      border-bottom: 1px dashed $color-default;
+      cursor: pointer;
+
+    }
+    div {
+      color: $color-default;
+      &:hover {
+        color: $color-default__hover;
+      }
+    }
+  }
+  .description_selected {
+    display: none;
+  }
+  .description-disable {
+    display: none;
+  }
+}
+
+.description_default {
+  @include item-description;
+  .description_default {
+    display: block;
+  }
+}
+
+.description_selected {
+  @include item-description;
+  .description_selected {
+    display: block;
+  }
+}
+
+.description_disable {
+  @include item-description;
+  .description_disable {
+    display: block;
+  }
+  color: $color-disabled-description;
+}
+
+// Card way
+.enable_hover {
+  composes: enable;
+  &:hover {
+    .background {
+      stroke: $color-default__hover;
+      cursor: pointer;
+    }
+    .circle {
+      background-color: $color-default__hover;
+
+    }
+  }
+}
+
+.selected_hover {
+  composes: enable;
+  &:hover {
+
+    .background {
+      stroke: $color-selected__hover;
+      cursor: pointer;
+    }
+    .circle {
+      background-color: $color-selected__hover;
+    }
+    .teaser {
+      display: none;
+    }
+    .teaser_second {
+      display: block;
+    }
+
+  }
+}
+
+.selected {
+  composes: enable;
+  .background {
+    stroke: $color-selected;
+  }
+  .circle {
+    background-color: $color-selected;
+  }
+  .description {
+
+    .item-description__selected {
+      display: block;
+    }
+  }
+}
+
+.disabled {
+  composes: enable;
+  .title,
+  .taste,
+  .teaser,
+  .specification {
+    color: $color-disabled;
+  }
+
+  .circle {
+    background-color: $color-disabled;
+  }
+
+  .background {
+    stroke: $color-disabled;
+  }
+
+  .cover {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    .background {
+      stroke: $color-disabled;
+      cursor: default;
+    }
+    .circle{
+      background-color: $color-disabled;
+    }
+  }
+}
