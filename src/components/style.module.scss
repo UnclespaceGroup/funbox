@@ -6,37 +6,10 @@ $color-selected__hover: #e62e7a;
 $color-disabled: #b3b3b3;
 $color-disabled-description: #ffff66;
 
-
-.background {
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-
-  top: 0;
-  z-index: -1;
-  width: 32rem;
-  height: 48rem;
-  fill: white;
-  stroke: $color-default;
-  .svg {
-    fill: black;
-  }
-  svg{
-  rect {
-
-    height: 100%;
-    width: 100%;
-    fill: black;
-    path {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  }
+.wrapper {
+  margin: 0 4rem 0 4rem;
 }
-.background.svg {
-  fill: black;
-}
+
 .enable {
   position: relative;
   display: flex;
@@ -45,11 +18,13 @@ $color-disabled-description: #ffff66;
   cursor: pointer;
   z-index: 1;
   background-size: cover;
+  background-image: url("../images/enable.svg");
   stroke: #d91667;
+  overflow: hidden;
 }
 .teaser {
   padding-top: 2rem;
-  padding-left: 5rem;
+  padding-left: 4.8rem;
   font-size: 1.6rem;
   font-family: "Trebuchet MS", serif;
   color: rgb(102, 102, 102);
@@ -65,16 +40,16 @@ $color-disabled-description: #ffff66;
 
 .title {
   font-family: "Trebuchet MS", sans-serif;
-  margin: 2px 0 0 46px;
+  margin: .5rem 0 0 4.6rem;
   padding: 0 0 0 0;
   text-align: left;
-  font-size: 48px;
+  font-size: 4.8rem;
   font-weight: bold;
   color: #000;
 }
 
 .taste {
-  margin: 0 0 0 5rem;
+  margin: 0 0 0 4.8rem;
   font-size: 2.4rem;
   font-family: "Trebuchet MS", sans-serif;
   color: #000;
@@ -86,7 +61,7 @@ $color-disabled-description: #ffff66;
   display: flex;
   flex-direction: column;
   min-height: 5rem;
-  margin: 0 0 0 5rem;
+  margin: .3rem 0 0 4.8rem;
   padding: 1rem 0 0;
   list-style-type: none;
   .specification {
@@ -102,7 +77,9 @@ $color-disabled-description: #ffff66;
   display: block;
   bottom: .4rem;
   left: .4rem;;
-  border-bottom-left-radius: .8rem;;
+  border-bottom-left-radius: 1.2rem;
+  height: 27rem;
+  width: 26rem;
 }
 .circle {
   position: absolute;
@@ -118,83 +95,41 @@ $color-disabled-description: #ffff66;
   background-color: $color-default;
   text-align: center;
   .first_line {
+    margin-top: .1rem;
     font-size: 4.2rem;
-    line-height: 4.2rem;
     font-family: "Trebuchet MS", serif;
     color: white;
   }
   .second_line {
     @extend .first_line;
+    margin-top: -.5rem;
     font-size: 2.2rem;
     line-height: 2.2rem;
   }
 }
-//bottom text
-@mixin item_description {
-  display: block;
-  position: relative;
-  padding-top: 13px;
-  font-size: 13px;
+.description {
+  padding-top: 1.3rem;
+  font-size: 1.3rem;
   font-family: "Trebuchet MS", sans-serif;
   color: rgb(255, 255, 255);
-  line-height: 1.231;
   text-align: center;
-  text-shadow: 0.5px 0.866px 1px black;
-  margin: 0 0 30px 0;
-  .description_default {
-    display: none;
-    a {
-      color: $color-default;
-      text-decoration: none;
-      border-bottom: 1px dashed $color-default;
-      cursor: pointer;
-
-    }
-    div {
-      color: $color-default;
-      &:hover {
-        color: $color-default__hover;
-      }
-    }
-  }
-  .description_selected {
-    display: none;
-  }
-  .description-disable {
-    display: none;
+  text-shadow: 1px 1px 1px black;
+  margin: 0 0 3rem 0;
+  span {
+    color: $color-default;
+    border-bottom: 1px dashed $color-default;
+    cursor: pointer;
   }
 }
-
-.description_default {
-  @include item-description;
-  .description_default {
-    display: block;
-  }
-}
-
-.description_selected {
-  @include item-description;
-  .description_selected {
-    display: block;
-  }
-}
-
-.description_disable {
-  @include item-description;
-  .description_disable {
-    display: block;
-  }
+.desc_disabled {
+  composes: description;
   color: $color-disabled-description;
 }
-
 // Card way
 .enable_hover {
   composes: enable;
   &:hover {
-    .background {
-      stroke: $color-default__hover;
-      cursor: pointer;
-    }
+    background-image: url("../images/hover.svg");
     .circle {
       background-color: $color-default__hover;
 
@@ -202,14 +137,27 @@ $color-disabled-description: #ffff66;
   }
 }
 
-.selected_hover {
+.selected {
   composes: enable;
-  &:hover {
 
-    .background {
-      stroke: $color-selected__hover;
-      cursor: pointer;
+  .enable {
+    background-image: url("../images/selected.svg");
+  }
+  .circle {
+    background-color: $color-selected;
+  }
+  .description {
+
+    .item-description__selected {
+      display: block;
     }
+  }
+}
+
+.selected_hover {
+  composes: selected;
+  &:hover {
+    background-image: url("../images/selected-hover.svg");
     .circle {
       background-color: $color-selected__hover;
     }
@@ -223,23 +171,10 @@ $color-disabled-description: #ffff66;
   }
 }
 
-.selected {
-  composes: enable;
-  .background {
-    stroke: $color-selected;
-  }
-  .circle {
-    background-color: $color-selected;
-  }
-  .description {
-
-    .item-description__selected {
-      display: block;
-    }
-  }
-}
-
 .disabled {
+  .enable {
+    background-image: url("../images/disable.svg");
+  }
   composes: enable;
   .title,
   .taste,
@@ -247,24 +182,15 @@ $color-disabled-description: #ffff66;
   .specification {
     color: $color-disabled;
   }
-
   .circle {
     background-color: $color-disabled;
   }
-
-  .background {
-    stroke: $color-disabled;
-  }
-
   .cover {
     opacity: 0.5;
   }
 
   &:hover {
-    .background {
-      stroke: $color-disabled;
-      cursor: default;
-    }
+    background-image: url("../images/disable.svg");
     .circle{
       background-color: $color-disabled;
     }

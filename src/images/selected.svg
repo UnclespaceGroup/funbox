@@ -5,7 +5,7 @@
     </clipPath>
   </defs>
   <g  stroke-width="4">
-    <rect x="2" y="2" rx="14" clip-path="url(#cp)" width="316" height="476" fill="#f2f2f2"/>
-    <line x1="2" y1="48" x2="45" y2="2"/>
+    <rect x="2" y="2" rx="14" clip-path="url(#cp)" width="316" height="476" stroke="#d91667"  fill="#f2f2f2"/>
+    <line x1="2" y1="48" x2="45" y2="2" stroke="#d91667"/>
   </g>
 </svg>

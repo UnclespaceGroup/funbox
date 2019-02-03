@@ -11,10 +11,10 @@ export const initialState = {
             description_taste: 'Печень утки разварная с артишоками.',
             portions: <span><b>10</b> порций</span>,
             mouse_amount: <span>мышь в падарок</span>,
-            specification_second: '',
+            specification_disabled: 'заказчик доволен',
             weight: '0,5',
             active: true,
-            selected: false
+            selected: false,
         },
         {
             id: 1,
@@ -24,12 +24,12 @@ export const initialState = {
             description_taste: 'Головы щучьи с чесноком да свежайшая сёмгушка.',
             portions: <span><b>40</b> порций</span>,
             mouse_amount: <span><b>2</b> мыши в подарок</span>,
-            specification_second: '',
+            specification_disabled: 'заказчик доволен',
             spec: '2',
             weight: '2',
             active: true,
-            selected: true
-        },
+            selected: true,
+            },
         {
             id: 2,
             teaser: 'Сказочное заморское яство',
@@ -38,19 +38,18 @@ export const initialState = {
             description_taste: 'Филе из цыплят с трюфелями в бульоне.',
             portions: <span><b>100</b> порций</span>,
             mouse_amount: <span><b>5</b> мышей в подарок</span>,
-            specification_second: 'заказчик доволен',
+            specification_disabled: 'заказчик доволен',
             spec: '5',
             weight: '5',
             active: false,
-            selected: false
-        }
+            selected: false,
+           }
     ]
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case types.SET_ACTIVE :
-            console.log(action);
             const id = action.payload
             const value = state.items[id].selected
             return {

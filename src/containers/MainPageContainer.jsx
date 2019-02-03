@@ -8,7 +8,6 @@ class MainPageContainer extends Component{
         const {
             ...props
         } = this.props
-        console.log(this.props);
         return(
             <Main {...props}/>
         )
