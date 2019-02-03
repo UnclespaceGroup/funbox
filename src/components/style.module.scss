@@ -8,17 +8,35 @@ $color-disabled-description: #ffff66;
 
 
 .background {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
 
-  position: absolute;
   top: 0;
   z-index: -1;
-  width: 120%;
+  width: 32rem;
   height: 48rem;
-  border-radius: 1rem;
   fill: white;
   stroke: $color-default;
-}
+  .svg {
+    fill: black;
+  }
+  svg{
+  rect {
 
+    height: 100%;
+    width: 100%;
+    fill: black;
+    path {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  }
+}
+.background.svg {
+  fill: black;
+}
 .enable {
   position: relative;
   display: flex;
@@ -26,6 +44,8 @@ $color-disabled-description: #ffff66;
   height: 48rem;
   cursor: pointer;
   z-index: 1;
+  background-size: cover;
+  stroke: #d91667;
 }
 .teaser {
   padding-top: 2rem;
