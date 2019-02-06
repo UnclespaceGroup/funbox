@@ -15,6 +15,8 @@ export const initialState = {
             weight: '0,5',
             active: true,
             selected: false,
+            description_enable: <div>Чего сидишь? Порадуй котэ, <a href={'#'}>купи.</a></div>,
+            description_disabled: <div>Печалька, с курой закончился. </div>
         },
         {
             id: 1,
@@ -29,6 +31,8 @@ export const initialState = {
             weight: '2',
             active: true,
             selected: true,
+            description_enable: <div>Чего сидишь? Порадуй котэ,<a href={'#'}>купи.</a></div>,
+            description_disabled: <div>Печалька, с курой закончился. </div>
             },
         {
             id: 2,
@@ -43,6 +47,8 @@ export const initialState = {
             weight: '5',
             active: false,
             selected: false,
+            description_enable: <div>Чего сидишь? Порадуй котэ, <a href={'#'}>купи.</a></div>,
+            description_disabled: <div style={{color: '#ffff66'}}>Печалька, с курой закончился. </div>
            }
     ]
 }

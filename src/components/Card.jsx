@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
+import classNames from 'classnames/bind';
 import s from './style.module.scss'
 import cat from '../images/funbox_logo.png'
+
+
+let cn = classNames.bind(s)
 
 class Card extends Component {
     state = {
@@ -19,7 +23,10 @@ class Card extends Component {
                 weight,
                 mouse_amount,
                 description_taste,
-                specification_disabled
+                specification_disabled,
+                description_disabled,
+                description_enable,
+
             },
             state: {
                 hovered
@@ -28,17 +35,23 @@ class Card extends Component {
             handleMouseLeave,
             handleSelect
         } = this
+        const cardWay = cn({
+            'enable_hover' : active && !selected && hovered,
+            'selected': active && selected && !hovered,
+            'selected_hover': active && selected && hovered,
+            'disabled': !active,
+            'enable' : active && !selected && !hovered,
+    })
         return (
             <div className={s.wrapper}>
-            <div className={!active ? s.disabled : selected ? s.selected : s.enable}>
                 <div
-                    className={selected && hovered ? s.selected_hover : hovered ? s.enable_hover : s.enable}
+                    className={cardWay}
                     onClick={handleSelect}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
 
                 >
-                    <div >
+                    <div>
                         <div className={s.teaser}>{teaser}</div>
                         <div className={s.teaser_second}>Котэ не одобряет?</div>
                         <div className={s.title}>{title}</div>
@@ -46,22 +59,21 @@ class Card extends Component {
                         <div className={s.specifications}>
                             <div className={s.specification}>{portions}</div>
                             <div className={s.specification}>{mouse_amount}</div>
-                            <div className={s.specification}>{!active? specification_disabled : ''}</div>
+                            <div className={s.specification}>{!active ? specification_disabled : ''}</div>
                         </div>
                         <img src={cat} className={s.cover} alt={'cat'}/>
                         <div className={s.circle}>
                             <div className={s.first_line}>{weight}</div>
                             <div className={s.second_line}>кг</div>
-
                         </div>
                     </div>
                 </div>
+                <div
+                    onClick={handleSelect}
+                    className={s.description}>{!active? description_disabled : selected ? description_taste : description_enable}</div>
+            </div>
 
-            </div>
-                {selected? <div className={s.description}>{description_taste}</div> :
-                    !active? <div className={s.desc_disabled}>Печалька, {taste} закончился.</div> :
-                    <div className={s.description}>Чего сидишь? Порадуй котэ,<span> <span onClick={handleSelect}>купи</span>.</span></div>}
-            </div>
+
         )
     }
 
@@ -84,6 +96,7 @@ class Card extends Component {
             hovered: false
         })
     }
+
 
 
 }

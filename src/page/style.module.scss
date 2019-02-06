@@ -5,6 +5,7 @@ html {
 body {
   background: url("../images/bg.jpg") repeat;
   background-size: 7rem;
+  height: 100vh;
 }
 
 @font-face {
@@ -24,6 +25,7 @@ body {
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  padding-top: 2.5rem;
 
   &:before {
     position: absolute;
@@ -101,8 +103,12 @@ body {
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   /* IE10 IE11 */
+  html {
+    font-size: 10px;
+  }
   .container {
     height: 100vh;
+    width: 100vw;
   }
 
 }
